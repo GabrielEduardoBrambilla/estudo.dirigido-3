@@ -1,76 +1,82 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include <iostream>
+#include <algorithm>
+
 using namespace std;
 
-int main (){
+int minimo_dezenas;
+int maximo_dezenas;
+string jogo;
 
-vector<int> numeros;
-    setlocale(LC_ALL, "Portuguese");
-        int rep=0, soma = 0 , control= 0, i;
+//MINIMO DE APOSTAS NA MEGA-SENA Ã‰ 6, MAXIMO E 15
+// Variavel dezena_jogos referente as dezenas de cada tipo de jogo, tipo mega-sena ...
 
-
-        numeros.push_back(6);
-
-    cout << "Digite qualquer numero inteiro (exceto 0) para realizar uma operação ou digite [0] para sair" << endl;
-
-    for(int i=0; i>=control; i++){
-
-         cin >> numeros[i];
-
-         if( numeros[i] == 0 ){
-
-            break;
-
+todos_os_jogos( int tipo_jogo ){
+int dezenas_jogos;
+int numero_de_apostas;
+    do{
+        cout << "Deseja apostar quantas vezes"<<endl;
+        cin >> numero_de_apostas;
+         system("cls");
+         if( numero_de_apostas < 0){
+             cout << "* Numero invalido *"<<endl;
          }
-    }
+    }while( numero_de_apostas < 0);
 
-    int decisao=1;
-    while (decisao != 0 ){
+    for(int i = 1 ; numero_de_apostas >= i; i++){
+     int contador_apostas = ++ i;
+        int dezenas_apostar = 0;
+            do{cout << "Aposta numero "<< contador_apostas<< " quantas dezenas deseja apostas"<<endl;
+                cin >> dezenas_apostar;
+                if (dezenas_apostar > dezenas_jogos){
+                    cout << "Numero maximo de dezenas para a"<< jogo << "Ã© "<<maximo_dezenas<< " e o minimo Ã© "<< minimo_dezenas<<endl;
+                }
+                if (maximo_dezenas == 50){
+                    
+                }
+                
+            }while(dezenas_apostar > maximo_dezenas || dezenas_apostar < minimo_dezenas);
 
-        cout << endl << endl;
-        cout << "Digite [1] para: Imprimir a somatória de seus elementos\n";
-        cout << "Digite [2] para: Imprimir a média de seus elementos\n";
-        cout << "Digite [3] para: Imprimir a média e a somatória\n";
-        cout << "Digite [4] para: Substituir por zero todos os valores negativos e imprimir a média\n";
-        cout << "Digite [5] para: Substituir por zero todos os valores repetidos e imprimir a média e a somatória\n";
-        cout << "Digite [6] para: Mostrar vetor ordenado\n\n";
 
-
-    cin >> decisao;
-    cout << endl << endl;
-
-
-    switch(decisao){
-
-    case 1:
-        for(int Dyogao = 0; Dyogao < 5  ; Dyogao++)
-
-        {
-            soma += numeros[Dyogao];
-        }
-            cout << "A somatória de todos os elementos é: " << soma << endl;
-            break;
-
-    case 2:
-        for(int Dyogao = 0; Dyogao < 5  ; Dyogao++)
-
-        {
-            soma += numeros[Dyogao];
-        }
-
-        soma = soma / numeros[i];
-        cout << "";
-            break;
-
-    case 3:
-        cout << "teste\n";
-            break;
-    default:
-        cout << "Adios, volte sempre" << endl;
-        break;
-
- }}
-  return 0;
+}
 }
 
+int main (){
+setlocale(LC_ALL, "Portuguese");
+int jogo_apostar;
+
+do{cout << "Digite o numero da opÃ§Ã£o que deseja jogar"<<endl;
+    cout << " [1] Mega-Sena "<<endl<< " [2] Quina"<<endl<<" [3] Lotomania"<<endl<<" [4] Lotofacil"<<endl;
+    cin >> jogo_apostar;
+        system("cls");
+            if (jogo_apostar != 1 && jogo_apostar != 2 && jogo_apostar != 3 && jogo_apostar != 4){
+                cout << "* Numero invalido *"<<endl;
+            }
+}while (jogo_apostar != 1 && jogo_apostar != 2 && jogo_apostar != 3 && jogo_apostar != 4);
+    switch (jogo_apostar){
+        case 1 :{
+            jogo = " Mega-Sena ";
+            maximo_dezenas = 15;
+            minimo_dezenas = 6;
+        }
+        case 2 :{
+            jogo = " Quina ";
+            maximo_dezenas = 15;
+            minimo_dezenas = 5;
+        }
+        case 3 :{
+            jogo = " Lotomania ";
+            maximo_dezenas = 50;
+            minimo_dezenas = 50;
+        }
+        case 4 :{
+            jogo = " Lotofacil ";
+            maximo_dezenas = 18;
+            minimo_dezenas = 15;
+        }
+}
+
+    todos_os_jogos( jogo_apostar);
+
+
+ return 0;
+}
