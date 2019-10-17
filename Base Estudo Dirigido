@@ -1,0 +1,72 @@
+#include <iostream>
+#include <algorithm>
+#include <vector>
+#include <iomanip>
+
+using namespace std;
+
+
+vector <double> preco_aposta;
+
+//MINIMO DE APOSTAS NA MEGA-SENA É 6, MAXIMO E 15
+// Variavel dezena_jogos referente as dezenas de cada tipo de jogo, tipo mega-sena ...
+
+todos_os_jogos( int tipo_jogo, int maximo_dezenas, int minimo_dezenas, string jogo ){
+    int dezenas_jogos;
+    int numero_de_apostas;
+        do{
+            cout << "Deseja apostar quantas vezes"<<endl;
+            cin >> numero_de_apostas;
+             system("cls");
+             if( numero_de_apostas < 0){
+                 cout << "*** Numero invalido ***"<<endl;
+             }
+        }while( numero_de_apostas < 0);
+
+    for(int i = 1 ; numero_de_apostas >= i; i++){
+        int contador_apostas = ++ i;
+        int dezenas_apostar = 0;
+
+            do{cout << "Aposta numero "<< contador_apostas<< " quantas dezenas deseja apostas"<<endl;
+                cin >> dezenas_apostar;
+                    if (dezenas_apostar > dezenas_jogos){
+                        cout << "Numero maximo de dezenas para a"<< jogo << "é "<<maximo_dezenas<< " e o minimo é "<< minimo_dezenas<<endl;
+                    }
+                    if (maximo_dezenas == 50){
+                        cout << "Na "<<  jogo << " você deve jogar 50 dezenas ou deixar que o sistema escolha por você na Surpresinha "<<endl;
+                    }
+
+            }while(dezenas_apostar > maximo_dezenas || dezenas_apostar < minimo_dezenas);
+
+
+            }
+}
+
+int main (){
+
+cout << setprecision(2)<<fixed;
+int minimo_dezenas;
+int maximo_dezenas;
+int jogo_apostar;
+string jogo;
+
+    setlocale(LC_ALL, "Portuguese");
+
+    do{
+        cout << "Digite o numero da opção que deseja jogar"<<endl;
+        cout << " [1] Mega-Sena "<<endl<< " [2] Quina"<<endl<<" [3] Lotomania"<<endl<<" [4] Lotofacil"<<endl;
+            cin >> jogo_apostar;
+            system("cls");
+                if (jogo_apostar != 1 && jogo_apostar != 2 && jogo_apostar != 3 && jogo_apostar != 4){
+                    cout << "*** Numero invalido ***"<<endl;
+                }
+    }while (jogo_apostar != 1 && jogo_apostar != 2 && jogo_apostar != 3 && jogo_apostar != 4);
+
+
+
+
+        todos_os_jogos( jogo_apostar, maximo_dezenas, minimo_dezenas, jogo);
+
+
+ return 0;
+}
